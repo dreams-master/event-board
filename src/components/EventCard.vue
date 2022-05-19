@@ -1,6 +1,6 @@
 <template>
     <div class="event-card my-4 rounded-lg drop-shadow-lg p-4">
-        <div class="event-time">{{ event.date }}</div>
+        <div class="event-time">{{ event.date.replace(/\//g,".") }}</div>
         <div class="event-title">{{ event.title }}</div>
         <div class="event-text">{{ event.body }}</div>
     </div>
