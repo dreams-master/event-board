@@ -17,7 +17,7 @@
 .logo-seb {
     width: 230px;
     height: 44px;
-    background-image: url(STZH_SEB_Logo.png);
+    background-image: url('./STZH_SEB_Logo.png');
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -25,7 +25,7 @@
 .logo-opportunity {
     width: 296px;
     height: 55px;
-    background-image: url(Opportunity.png);
+    background-image: url('./Opportunity.png');
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -33,7 +33,7 @@
 .logo-sag {
     width: 273px;
     height: 52px;
-    background-image: url(SAG_Logo_De.png);
+    background-image: url('./SAG_Logo_De.png');
     background-size: contain;
     background-repeat: no-repeat;
 }
