@@ -1,5 +1,5 @@
 <template>
-    <p v-if="loading">Loding events ...</p>
+    <p v-if="loading">Loading events ...</p>
     <p v-if="error">{{ error.message }}</p>
     <div v-if="events">
         <div v-for="(event, index) in events" :key="index">
