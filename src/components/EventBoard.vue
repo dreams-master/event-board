@@ -14,9 +14,6 @@ import { useEventStore } from "../stores/event";
 import EventCard from './EventCard.vue';
 
 const { events, loading, error } = storeToRefs(useEventStore());
-const { fetchEvents } = useEventStore();
-
-fetchEvents();
 </script>
 
 <style>

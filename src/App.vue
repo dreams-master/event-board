@@ -2,7 +2,7 @@
     <header></header>
     <main class="m-5">
         <div class="app-title">Welcome to Opportunity</div>
-        <div class="app-date">08.08.2021</div>
+        <div class="app-date">{{ currentDate }}</div>
         <EventBoard></EventBoard>
     </main>
     <AppFooter></AppFooter>
@@ -11,6 +11,20 @@
 <script setup>
 import EventBoard from "./components/EventBoard.vue";
 import AppFooter from "./components/AppFooter.vue";
+import { computed, ref } from "@vue/runtime-core";
+import { useEventStore } from "./stores/event";
+
+const date = ref(new Date());
+const { fetchEvents } = useEventStore();
+const currentDate = computed(() => `${date.value.getDate().toString().padStart(2,"0")}.${(date.value.getMonth() + 1).toString().padStart(2, "0")}.${date.value.getFullYear()}`);
+
+function update() {
+    date.value = new Date();
+    fetchEvents();
+}
+
+update();
+setInterval(update, 1000 * 60 * 30);
 </script>
 
 <style>
