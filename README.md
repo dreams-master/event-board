@@ -1,6 +1,6 @@
 # event-board
 
-This template should help get you started developing with Vue 3 in Vite.
+A simple Welcome Screen listing upcoming events taken from a google spreadsheet using Vue3, Vite and Pinia. 
 
 ## Recommended IDE Setup
 
