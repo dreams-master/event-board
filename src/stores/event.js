@@ -1,14 +1,8 @@
 import { defineStore } from 'pinia'
 
-const data = {
-    events: [
-        { id: 1, date: "2022-5-7", title: "adfasd", body: "asdfasdfadsfasdfadsf sdafdsafasdf"},
-        { id: 2, date: "2022-5-8", title: "adfasd", body: "asdfasdfadsfasdfadsf sdafdsafasdf"},
-        { id: 3, date: "2022-5-9", title: "adfasd", body: "asdfasdfadsfasdfadsf sdafdsafasdf"},
-        { id: 4, date: "2022-5-10", title: "adfasd", body: "asdfasdfadsfasdfadsf sdafdsafasdf"},
-        { id: 5, date: "2022-5-11", title: "adfasd", body: "asdfasdfadsfasdfadsf sdafdsafasdf"},
-    ]
-}
+const sheet_id = "1a81aI0Y8ViZO0tI92h2YSMqVQJ8hmNNMyMylXgvwiU4";
+const api_token = "AIzaSyA-qeDXOhEeQDA0vQf7LgkF7DQtGnAtmAU";
+const gsheet_url = `https://sheets.googleapis.com/v4/spreadsheets/${sheet_id}/values:batchGet?ranges=A1%3AE100&valueRenderOption=FORMATTED_VALUE&key=${api_token}`;
 
 export const useEventStore = defineStore({
     id: 'event',
@@ -24,30 +18,25 @@ export const useEventStore = defineStore({
     },
     actions: {
         async fetchEvents() {
-            this.events = []
-            this.loading = true
+            this.events = [];
+            this.loading = true;
             try {
-                this.events = data.events;
-                // this.posts = await fetch('https://')
-                //     .then((response) => response.json())
+                let result = await fetch(gsheet_url)
+                    .then((response) => response.json());
+                result = result.valueRanges[0].values;
+                for (let i = 1; i < result.length; i++) {
+                    let event = {};
+                    event.date = `${result[i][1]} ${result[i][0]}`;
+                    event.title = result[i][2];
+                    event.body = result[i][3];
+
+                    this.events.push(event);
+                }
             } catch (error) {
                 this.error = error
             } finally {
                 this.loading = false
             }
         },
-        async fetchEvent(id) {
-            this.post = null
-            this.loading = true
-            try {
-                //this.event
-                // this.post = await fetch(`https://`)
-                //     .then((response) => response.json())
-            } catch (error) {
-                this.error = error
-            } finally {
-                this.loading = false
-            }
-        }
     }
 })
