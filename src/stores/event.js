@@ -20,6 +20,7 @@ export const useEventStore = defineStore({
         async fetchEvents() {
             this.events = [];
             this.loading = true;
+            this.error = undefined;
             try {
                 let result = await fetch(gsheet_url)
                     .then((response) => response.json());
